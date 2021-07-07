@@ -1,7 +1,8 @@
-import {Column, Entity, ObjectID, ObjectIdColumn} from "typeorm";
+import {BaseEntity, Column, Entity, ObjectID, ObjectIdColumn, OneToMany} from "typeorm";
+import {Comment} from "../../comment/entities/comment.entity";
 
 @Entity('Article')
-export class Article {
+export class Article extends BaseEntity{
     @ObjectIdColumn()
     _id: ObjectID
 
@@ -16,4 +17,7 @@ export class Article {
 
     @Column()
     content: string
+
+    @OneToMany(() => Comment, comment => comment.article)
+    comments: Comment[]
 }
