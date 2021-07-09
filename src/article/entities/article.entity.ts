@@ -1,5 +1,5 @@
 import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Comment} from "../../comment/entities/comment.entity";
+import {Comment} from "../../comment/entities/article.comment.entity";
 
 @Entity('Article')
 export class Article extends BaseEntity {

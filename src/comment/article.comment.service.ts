@@ -1,23 +1,22 @@
 import {Injectable} from '@nestjs/common';
 import { CreateCommentDto } from './dto/create-comment.dto';
-import { UpdateCommentDto } from './dto/update-comment.dto';
 import {InjectRepository} from "@nestjs/typeorm";
 import {CommentRepository} from "./comment.repository";
-import {Comment} from "./entities/comment.entity";
+import {Comment} from "./entities/article.comment.entity";
 import {ArticleService} from "../article/article.service";
 
 @Injectable()
-export class CommentService {
+export class ArticleCommentService {
   constructor(@InjectRepository(CommentRepository) private commentRepository: CommentRepository, private articleService: ArticleService) {
   }
-  async create(createCommentDto: CreateCommentDto) {
-    const {articleId} = createCommentDto;
+  async create(articleId:string, createCommentDto: CreateCommentDto) {
     const article = await this.articleService.findOne(articleId)
     let comment = new Comment()
     comment.comment = createCommentDto.comment
-    comment.writer = createCommentDto.writer
     comment.article = article
-    return await comment.save()
+    const cmt = await comment.save()
+    delete cmt.article
+    return cmt
   }
 
   findAll() {
@@ -25,14 +24,10 @@ export class CommentService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} comment`;
-  }
-
-  update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} comment`;
+    return this.commentRepository.findOne(id);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} comment`;
+    return this.commentRepository.delete(id);
   }
 }

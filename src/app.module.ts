@@ -6,9 +6,10 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {mongodbConfig} from "../dbConfig/mongodb.config";
 import { CommentModule } from './comment/comment.module';
 import {postgresConfig} from "../dbConfig/postgrss.config";
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(postgresConfig), ArticleModule, CommentModule],
+  imports: [TypeOrmModule.forRoot(postgresConfig), ArticleModule, CommentModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })

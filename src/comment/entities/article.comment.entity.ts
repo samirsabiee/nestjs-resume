@@ -7,12 +7,8 @@ export class Comment extends BaseEntity{
     id: string
 
     @Column()
-    writer: string
-
-    @Column()
     comment: string
 
     @ManyToOne(() => Article, article => article.comments, {onDelete:"CASCADE"})
     article: Article
-
 }
