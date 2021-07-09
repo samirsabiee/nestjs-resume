@@ -28,6 +28,8 @@
     "@nestjs/typeorm": "^7.1.5",
     "class-validator": "^0.13.1",
     "mongodb": "^3.6.10",
+    "pg": "^8.6.0",
+    "postgres": "^1.0.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",

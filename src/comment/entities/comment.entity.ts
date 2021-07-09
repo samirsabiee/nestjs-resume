@@ -1,10 +1,10 @@
-import {BaseEntity, Column, Entity, ManyToOne, ObjectID, ObjectIdColumn} from "typeorm";
+import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Article} from "../../article/entities/article.entity";
 
 @Entity('Comment')
 export class Comment extends BaseEntity{
-    @ObjectIdColumn()
-    _id: ObjectID
+    @PrimaryGeneratedColumn()
+    id: string
 
     @Column()
     writer: string
@@ -12,6 +12,7 @@ export class Comment extends BaseEntity{
     @Column()
     comment: string
 
-    @ManyToOne(() => Article, article => article.comments)
+    @ManyToOne(() => Article, article => article.comments, {onDelete:"CASCADE"})
     article: Article
+
 }

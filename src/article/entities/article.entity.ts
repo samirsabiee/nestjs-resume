@@ -1,10 +1,10 @@
-import {BaseEntity, Column, Entity, ObjectID, ObjectIdColumn, OneToMany} from "typeorm";
+import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Comment} from "../../comment/entities/comment.entity";
 
 @Entity('Article')
-export class Article extends BaseEntity{
-    @ObjectIdColumn()
-    _id: ObjectID
+export class Article extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: string
 
     @Column()
     title: string
@@ -18,6 +18,6 @@ export class Article extends BaseEntity{
     @Column()
     content: string
 
-    @OneToMany(() => Comment, comment => comment.article)
+    @OneToMany(() => Comment, comment => comment.article, {eager: true})
     comments: Comment[]
 }

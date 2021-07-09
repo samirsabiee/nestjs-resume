@@ -15,11 +15,11 @@ export class ArticleService {
   }
 
   findAll() {
-    return this.articleRepository.find();
+    return this.articleRepository.find({relations:['comments']});
   }
 
   findOne(id: string) {
-    return this.articleRepository.findOne(id);
+    return this.articleRepository.findOne(id,{relations:['comments']});
   }
 
   async update(id: string, updateArticleDto: UpdateArticleDto): Promise<Article>{
