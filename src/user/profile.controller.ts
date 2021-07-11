@@ -3,7 +3,7 @@ import {ProfileService} from "./profile.service";
 import {CreateProfileDto} from "./dto/create-profile.dto";
 import {UpdateProfileDto} from "./dto/update-profile.dto";
 import {FileInterceptor} from "@nestjs/platform-express";
-import {diskStorage} from 'multer'
+import {avatarUploadOption} from "./avatar.upload.option";
 
 @Controller('profile')
 export class ProfileController {
@@ -11,15 +11,7 @@ export class ProfileController {
     }
 
     @Post()
-    @UseInterceptors(FileInterceptor('avatar', {
-        limits: {
-            fileSize: 1024 * 1024 * 5,
-        },
-        storage: diskStorage({
-            destination: (req, file, cb) => cb(null, './avatars'),
-            filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
-        })
-    }))
+    @UseInterceptors(FileInterceptor('avatar', avatarUploadOption))
     create(userId:string, @Body() createProfileDto: CreateProfileDto, @UploadedFile() file) {
         createProfileDto.avatar = file.path
         return this.profileService.create(createProfileDto);
