@@ -5,15 +5,15 @@ export class Profile extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: string
 
-    @Column()
+    @Column({nullable:true})
     email: string
 
-    @Column()
+    @Column({nullable:true})
     mobile: string
 
-    @Column()
+    @Column({nullable:true})
     bio: string
 
-    @Column()
+    @Column({nullable:true})
     avatar: string
 }

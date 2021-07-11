@@ -2,7 +2,7 @@ import {BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn
 import {Profile} from "./profile.entity";
 
 @Entity('User')
-export class User extends BaseEntity{
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string
 
@@ -11,8 +11,8 @@ export class User extends BaseEntity{
 
     @Column()
     password: string
-    
-    @OneToOne(() => Profile)
+
+    @OneToOne(() => Profile, {cascade: true})
     @JoinColumn()
     profile: Profile
 }

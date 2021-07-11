@@ -8,16 +8,16 @@ import {UserRepository} from "./user.repository";
 export class UserService {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {
   }
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     return this.userRepository.save(createUserDto);
   }
 
   findAll() {
-    return this.userRepository.find();
+    return this.userRepository.find({relations:['profile']});
   }
 
   findOne(id: number) {
-    return this.userRepository.findOne(id);
+    return this.userRepository.findOne(id,{relations:['profile']});
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

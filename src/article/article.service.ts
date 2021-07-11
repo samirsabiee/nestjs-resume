@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import {Repository, UpdateResult} from "typeorm";
 import {Article} from "./entities/article.entity";
 import {InjectRepository} from "@nestjs/typeorm";
 import {ArticleRepository} from "./article.repository";
