@@ -7,7 +7,8 @@ import {InjectRepository} from "@nestjs/typeorm";
 @Injectable()
 export class UserService {
   constructor(@InjectRepository(UserRepository) private userRepository: UserRepository) {}
-  create(createUserDto: CreateUserDto) {
+
+  create(createUserDto: any) {
     return this.userRepository.save(createUserDto);
   }
 

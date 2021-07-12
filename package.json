@@ -30,6 +30,7 @@
     "@nestjs/typeorm": "^7.1.5",
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
+    "bcryptjs": "^2.4.3",
     "class-validator": "^0.13.1",
     "mongodb": "^3.6.10",
     "passport": "^0.4.1",

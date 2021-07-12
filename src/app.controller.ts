@@ -1,8 +1,8 @@
-import {Request, Controller, Get, UseGuards} from '@nestjs/common';
+import {Request, Controller, Get, UseGuards, Post, Body} from '@nestjs/common';
 import { AppService } from './app.service';
-import {JwtAuthGuard} from "./auth/jwt-auth.guard";
 import {LocalAuthGuard} from "./auth/local-auth.guard";
 import {AuthService} from "./auth/auth.service";
+import {RegisterDto} from "./auth/dto/register.dto";
 
 @Controller()
 export class AppController {
@@ -12,5 +12,9 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   async login(@Request() req){
     return this.authService.login(req.user)
+  }
+  @Post('register')
+  async register(@Body() registerDto: RegisterDto) {
+    return this.authService.register(registerDto)
   }
 }
