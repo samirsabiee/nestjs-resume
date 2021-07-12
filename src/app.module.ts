@@ -5,11 +5,11 @@ import { ArticleModule } from './article/article.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import { CommentModule } from './comment/comment.module';
 import {postgresConfig} from "../dbConfig/postgrss.config";
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import {AuthModule} from "./auth/auth.module";
 
 @Module({
-  imports: [TypeOrmModule.forRoot(postgresConfig), ArticleModule, CommentModule, UsersModule, AuthModule],
+  imports: [TypeOrmModule.forRoot(postgresConfig), ArticleModule, CommentModule, UserModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
