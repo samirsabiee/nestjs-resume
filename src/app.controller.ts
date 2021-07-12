@@ -8,15 +8,9 @@ import {AuthService} from "./auth/auth.service";
 export class AppController {
   constructor(private readonly appService: AppService, private authService: AuthService) {}
 
-  @Get()
+  @Get('login')
   @UseGuards(LocalAuthGuard)
   async login(@Request() req){
     return this.authService.login(req.user)
-  }
-
-  @Get('/hello')
-  @UseGuards(JwtAuthGuard)
-  getHello(): string {
-    return this.appService.getHello();
   }
 }
